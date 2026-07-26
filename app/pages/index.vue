@@ -12,12 +12,12 @@
       </div>
       <div class="nav-btns">
         <button class="nav-btn">
-          <MdiIcon class="nav-btn-icon" :path="mdiCompassOutline" :size="80" />
-          <span class="nav-btn-label">导航</span>
-        </button>
-        <button class="nav-btn">
           <MdiIcon class="nav-btn-icon" :path="mdiFolderOutline" :size="80" />
           <span class="nav-btn-label">项目</span>
+        </button>
+        <button class="nav-btn">
+          <MdiIcon class="nav-btn-icon" :path="mdiCompassOutline" :size="80" />
+          <span class="nav-btn-label">联系方式</span>
         </button>
       </div>
     </header>
