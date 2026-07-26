@@ -6,13 +6,23 @@
   </div>
 </template>
 
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+</style>
+
 <style scoped>
 .layout {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #fdf5e6;
+  overflow: hidden;
 }
 
 .card {
