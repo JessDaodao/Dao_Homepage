@@ -10,12 +10,9 @@
         <h1 class="name">Dao</h1>
         <p class="bio">这里是个人简介，写一些关于自己的话。</p>
       </div>
-      <nav class="actions">
-        <button class="btn">主页</button>
-        <button class="btn">博客</button>
-        <button class="btn">项目</button>
-        <button class="btn">关于</button>
-      </nav>
+      <button class="nav-btn">
+        <span class="nav-btn-label">导航</span>
+      </button>
     </header>
   </div>
 </template>
@@ -31,7 +28,7 @@
 .avatar {
   width: 80px;
   height: 80px;
-  border-radius: 20px; /* 圆角正方形 */
+  border-radius: 10px;
   object-fit: cover;
   display: block;
   user-select: none;
@@ -50,25 +47,29 @@
   line-height: 1.6;
 }
 
-.actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-.btn {
-  padding: 8px 20px;
+/* 右侧独立导航按钮 */
+.nav-btn {
+  position: relative;
+  min-width: 160px;
+  padding: 32px 36px;
   border: none;
-  border-radius: 999px;
-  background-color: #fdf5e6; /* 与背景呼应的浅黄 */
+  border-radius: 12px;
+  background-color: #fdf5e6;
   color: #7a6520;
-  font-size: 14px;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.btn:hover {
+.nav-btn:hover {
   background-color: #f7e8c6;
+}
+
+.nav-btn-label {
+  font-size: 16px;
+  font-weight: 600;
+  position: absolute;
+  top: 8px;
+  left: 14px;
+  line-height: 1;
 }
 </style>
