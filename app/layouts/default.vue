@@ -18,7 +18,7 @@
 .card {
   width: 100%;
   max-width: 720px;
-  padding: 48px 40px;
+  padding: 25px 25px;
   border-radius: 24px;
   background-color: #ffffff;
   box-shadow: none;
