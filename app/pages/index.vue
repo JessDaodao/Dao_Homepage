@@ -12,15 +12,21 @@
       </div>
       <div class="nav-btns">
         <button class="nav-btn">
+          <MdiIcon class="nav-btn-icon" :path="mdiCompassOutline" :size="80" />
           <span class="nav-btn-label">导航</span>
         </button>
         <button class="nav-btn">
+          <MdiIcon class="nav-btn-icon" :path="mdiFolderOutline" :size="80" />
           <span class="nav-btn-label">项目</span>
         </button>
       </div>
     </header>
   </div>
 </template>
+
+<script setup>
+import { mdiCompassOutline, mdiFolderOutline } from '@mdi/js'
+</script>
 
 <style scoped>
 .card-header {
@@ -60,6 +66,7 @@
 
 .nav-btn {
   position: relative;
+  overflow: hidden;
   min-width: 160px;
   padding: 32px 36px;
   border: none;
@@ -81,5 +88,14 @@
   top: 12px;
   left: 12px;
   line-height: 1;
+  z-index: 1;
+}
+
+.nav-btn-icon {
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  opacity: 0.12;
+  pointer-events: none;
 }
 </style>
