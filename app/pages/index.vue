@@ -10,9 +10,14 @@
         <h1 class="name">Dao</h1>
         <p class="bio">这里是个人简介，写一些关于自己的话。</p>
       </div>
-      <button class="nav-btn">
-        <span class="nav-btn-label">导航</span>
-      </button>
+      <div class="nav-btns">
+        <button class="nav-btn">
+          <span class="nav-btn-label">导航</span>
+        </button>
+        <button class="nav-btn">
+          <span class="nav-btn-label">项目</span>
+        </button>
+      </div>
     </header>
   </div>
 </template>
@@ -47,7 +52,12 @@
   line-height: 1.6;
 }
 
-/* 右侧独立导航按钮 */
+.nav-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .nav-btn {
   position: relative;
   min-width: 160px;
@@ -68,8 +78,8 @@
   font-size: 16px;
   font-weight: 600;
   position: absolute;
-  top: 8px;
-  left: 14px;
+  top: 12px;
+  left: 12px;
   line-height: 1;
 }
 </style>
