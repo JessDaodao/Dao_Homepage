@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   devServer: { port: 3300 },
   app: {
+    head: {
+      titleTemplate: '%s - Csituka_D',
+    },
     pageTransition: {
       name: 'page',
       mode: 'out-in',

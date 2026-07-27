@@ -22,6 +22,7 @@
 </template>
 
 <script setup>
+useHead({ title: '友情链接' })
 
 const links = [
   { name: '占位', desc: '占位', url: 'https://example.com', avatar: '/default.png' },

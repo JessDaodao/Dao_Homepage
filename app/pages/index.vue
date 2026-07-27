@@ -6,7 +6,7 @@
           class="avatar"
           src="https://q2.qlogo.cn/headimg_dl?dst_uin=694428809&spec=100&v=0.26750974337065003"
           alt="头像" />
-        <h1 class="name">JessDaodao</h1>
+        <h1 class="name">Csituka_D</h1>
         <p class="bio">
           我叫JessDaodao，你可以称呼我为“叨叨” <br />
           目前是一名学生，16岁 <br />
@@ -23,6 +23,7 @@
 
 <script setup>
 import { mdiLinkVariant, mdiFolderOutline } from '@mdi/js'
+useHead({ title: '首页' })
 </script>
 
 <style scoped>

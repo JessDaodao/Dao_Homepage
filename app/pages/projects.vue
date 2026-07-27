@@ -40,6 +40,7 @@
 
 <script setup lang="ts">
 import { mdiStarOutline } from '@mdi/js'
+useHead({ title: '项目' })
 
 interface GitHubRepo {
   id: number
