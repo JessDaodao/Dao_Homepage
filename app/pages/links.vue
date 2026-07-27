@@ -14,8 +14,11 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <span class="link-name">{{ link.name }}</span>
-        <span class="link-desc">{{ link.desc }}</span>
+        <img class="link-avatar" src="/default.png" alt="" />
+        <div class="link-text">
+          <span class="link-name">{{ link.name }}</span>
+          <span class="link-desc">{{ link.desc }}</span>
+        </div>
       </a>
     </div>
   </div>
@@ -64,9 +67,10 @@ const links = [
 
 .link-item {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 14px 16px;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
   border-radius: 10px;
   background-color: #fdf5e6;
   text-decoration: none;
@@ -75,6 +79,20 @@ const links = [
 
 .link-item:hover {
   background-color: #f7e8c6;
+}
+
+.link-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.link-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .link-name {
