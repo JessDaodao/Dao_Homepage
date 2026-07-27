@@ -9,7 +9,7 @@
         <h1 class="name">Csituka_D</h1>
         <p class="bio">
           我叫JessDaodao，你可以称呼我为“叨叨” <br />
-          目前是一名学生，16岁 <br />
+          目前是一名学生，{{ age }}岁 <br />
           很高兴认识你
         </p>
       </div>
@@ -27,8 +27,18 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { mdiLinkVariant, mdiFolderOutline } from '@mdi/js'
 useHead({ title: '首页' })
+
+const birth = new Date('2010-02-05')
+const age = computed(() => {
+  const now = new Date()
+  let a = now.getFullYear() - birth.getFullYear()
+  const m = now.getMonth() - birth.getMonth()
+  if (m < 0 || (m === 0 && now.getDate() < birth.getDate())) a--
+  return a
+})
 </script>
 
 <style scoped>
