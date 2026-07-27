@@ -7,7 +7,11 @@
           src="https://q2.qlogo.cn/headimg_dl?dst_uin=694428809&spec=100&v=0.26750974337065003"
           alt="头像" />
         <h1 class="name">JessDaodao</h1>
-        <p class="bio">这里是个人简介，写一些关于自己的话。</p>
+        <p class="bio">
+          我叫JessDaodao，你可以称呼我为“叨叨” <br />
+          目前是一名学生，16岁 <br />
+          很高兴认识你
+        </p>
       </div>
       <div class="nav-btns">
         <NuxtLink to="/projects" class="nav-btn">
