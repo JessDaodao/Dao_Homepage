@@ -14,24 +14,34 @@
         </p>
       </div>
       <div class="nav-btns">
-        <GlowBorder>
-          <NavButton to="/projects" :icon="mdiFolderOutline" label="项目" />
-        </GlowBorder>
-        <GlowBorder>
-          <NavButton to="/links" :icon="mdiLinkVariant" label="友情链接" />
-        </GlowBorder>
+        <ClickTilt>
+          <GlowBorder>
+            <NavButton to="/projects" :icon="mdiFolderOutline" label="项目" />
+          </GlowBorder>
+        </ClickTilt>
+        <ClickTilt>
+          <GlowBorder>
+            <NavButton to="/links" :icon="mdiLinkVariant" label="友情链接" />
+          </GlowBorder>
+        </ClickTilt>
       </div>
     </header>
     <div class="social-links">
-      <GlowBorder>
-        <SocialLink href="https://github.com/JessDaodao" src="/links/github.svg" alt="GitHub" title="GitHub" />
-      </GlowBorder>
-      <GlowBorder>
-        <SocialLink href="https://space.bilibili.com/494565117" src="/links/bili.svg" alt="Bilibili" title="Bilibili" />
-      </GlowBorder>
-      <GlowBorder>
-        <SocialLink href="https://namemc.com/profile/ress2338396" src="/links/namemc.svg" alt="NameMC" title="NameMC" />
-      </GlowBorder>
+      <ClickTilt>
+        <GlowBorder>
+          <SocialLink href="https://github.com/JessDaodao" src="/links/github.svg" alt="GitHub" title="GitHub" />
+        </GlowBorder>
+      </ClickTilt>
+      <ClickTilt>
+        <GlowBorder>
+          <SocialLink href="https://space.bilibili.com/494565117" src="/links/bili.svg" alt="Bilibili" title="Bilibili" />
+        </GlowBorder>
+      </ClickTilt>
+      <ClickTilt>
+        <GlowBorder>
+          <SocialLink href="https://namemc.com/profile/ress2338396" src="/links/namemc.svg" alt="NameMC" title="NameMC" />
+        </GlowBorder>
+      </ClickTilt>
     </div>
   </div>
 </template>
