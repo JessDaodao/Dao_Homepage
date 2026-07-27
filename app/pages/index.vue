@@ -14,14 +14,8 @@
         </p>
       </div>
       <div class="nav-btns">
-        <NuxtLink to="/projects" class="nav-btn">
-          <MdiIcon class="nav-btn-icon" :path="mdiFolderOutline" :size="80" />
-          <span class="nav-btn-label">项目</span>
-        </NuxtLink>
-        <NuxtLink to="/links" class="nav-btn">
-          <MdiIcon class="nav-btn-icon" :path="mdiLinkVariant" :size="80" />
-          <span class="nav-btn-label">友情链接</span>
-        </NuxtLink>
+        <NavButton to="/projects" :icon="mdiFolderOutline" label="项目" />
+        <NavButton to="/links" :icon="mdiLinkVariant" label="友情链接" />
       </div>
     </header>
   </div>
@@ -63,42 +57,5 @@ import { mdiLinkVariant, mdiFolderOutline } from '@mdi/js'
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-.nav-btn {
-  position: relative;
-  overflow: hidden;
-  min-width: 80px;
-  padding: 32px 36px;
-  border: none;
-  border-radius: 12px;
-  background-color: #fdf5e6;
-  color: #7a6520;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  text-decoration: none;
-  display: block;
-}
-
-.nav-btn:hover {
-  background-color: #f7e8c6;
-}
-
-.nav-btn-label {
-  font-size: 16px;
-  font-weight: 600;
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  line-height: 1;
-  z-index: 1;
-}
-
-.nav-btn-icon {
-  position: absolute;
-  bottom: -24px;
-  right: -24px;
-  opacity: 0.12;
-  pointer-events: none;
 }
 </style>
