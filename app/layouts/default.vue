@@ -28,9 +28,11 @@ html, body {
 .card {
   width: 100%;
   max-width: 600px;
+  max-height: calc(100vh - 44px);
   padding: 22px 22px;
   border-radius: 24px;
   background-color: #ffffff;
   box-shadow: none;
+  overflow-y: auto;
 }
 </style>

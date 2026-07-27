@@ -15,17 +15,17 @@
           <MdiIcon class="nav-btn-icon" :path="mdiFolderOutline" :size="80" />
           <span class="nav-btn-label">项目</span>
         </button>
-        <button class="nav-btn">
-          <MdiIcon class="nav-btn-icon" :path="mdiCompassOutline" :size="80" />
-          <span class="nav-btn-label">联系方式</span>
-        </button>
+        <NuxtLink to="/links" class="nav-btn">
+          <MdiIcon class="nav-btn-icon" :path="mdiLinkVariant" :size="80" />
+          <span class="nav-btn-label">友情链接</span>
+        </NuxtLink>
       </div>
     </header>
   </div>
 </template>
 
 <script setup>
-import { mdiCompassOutline, mdiFolderOutline } from '@mdi/js'
+import { mdiLinkVariant, mdiFolderOutline } from '@mdi/js'
 </script>
 
 <style scoped>
@@ -67,7 +67,7 @@ import { mdiCompassOutline, mdiFolderOutline } from '@mdi/js'
 .nav-btn {
   position: relative;
   overflow: hidden;
-  min-width: 160px;
+  min-width: 80px;
   padding: 32px 36px;
   border: none;
   border-radius: 12px;
@@ -75,6 +75,8 @@ import { mdiCompassOutline, mdiFolderOutline } from '@mdi/js'
   color: #7a6520;
   cursor: pointer;
   transition: background-color 0.2s;
+  text-decoration: none;
+  display: block;
 }
 
 .nav-btn:hover {
