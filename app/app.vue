@@ -8,7 +8,7 @@ const year = new Date().getFullYear()
     <NuxtPage />
   </NuxtLayout>
   <footer class="site-footer">
-    <span class="footer-text">© {{ year }}</span>
+    <span class="footer-text">Theme By Csituka_D © {{ year }}</span>
   </footer>
 </template>
 
