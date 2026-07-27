@@ -7,7 +7,7 @@
           src="https://q2.qlogo.cn/headimg_dl?dst_uin=694428809&spec=100&v=0.26750974337065003"
           alt="头像"
         />
-        <h1 class="name">Dao</h1>
+        <h1 class="name">JessDaodao</h1>
         <p class="bio">这里是个人简介，写一些关于自己的话。</p>
       </div>
       <div class="nav-btns">
