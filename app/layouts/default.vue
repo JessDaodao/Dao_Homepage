@@ -10,20 +10,23 @@
 const route = useRoute()
 const cardRef = ref<HTMLElement | null>(null)
 
-let isAnimating = false
+let cancelToken = false
 
 watch(
   () => route.path,
   async (_to, from) => {
     if (!from) return
-    if (isAnimating) return
-    isAnimating = true
+
+    cancelToken = true
+    const token = (cancelToken = false)
 
     const card = cardRef.value
-    if (!card) {
-      isAnimating = false
-      return
-    }
+    if (!card) return
+
+    card.style.transition = 'none'
+    card.style.width = ''
+    card.style.height = ''
+    card.style.overflow = ''
 
     const oldRect = card.getBoundingClientRect()
     const oldW = oldRect.width
@@ -35,7 +38,9 @@ watch(
     card.style.overflow = 'hidden'
 
     await new Promise((r) => setTimeout(r, 320))
+    if (token) return
     await nextTick()
+    if (token) return
 
     card.style.width = ''
     card.style.height = ''
@@ -44,12 +49,19 @@ watch(
     const newW = newRect.width
     const newH = newRect.height
 
+    if (token) {
+      card.style.width = ''
+      card.style.height = ''
+      card.style.transition = ''
+      card.style.overflow = ''
+      return
+    }
+
     if (Math.abs(newW - oldW) < 1 && Math.abs(newH - oldH) < 1) {
       card.style.width = ''
       card.style.height = ''
       card.style.transition = ''
       card.style.overflow = ''
-      isAnimating = false
       return
     }
 
@@ -58,21 +70,25 @@ watch(
     card.style.transition = 'none'
 
     requestAnimationFrame(() => {
+      if (token) return
+
       card.style.transition =
         'width 0.35s cubic-bezier(0.4, 0, 0.2, 1), height 0.35s cubic-bezier(0.4, 0, 0.2, 1)'
       card.style.width = newW + 'px'
       card.style.height = newH + 'px'
 
-      const cleanup = () => {
+      let settled = false
+      const settle = () => {
+        if (settled || token) return
+        settled = true
         card.style.width = ''
         card.style.height = ''
         card.style.transition = ''
         card.style.overflow = ''
-        isAnimating = false
       }
 
-      card.addEventListener('transitionend', cleanup, { once: true })
-      setTimeout(cleanup, 500)
+      card.addEventListener('transitionend', settle, { once: true })
+      setTimeout(settle, 500)
     })
   },
 )
