@@ -6,8 +6,8 @@
       <LoadingSpinner />
     </div>
 
-    <div v-else-if="error" class="status-msg status-error">
-      获取项目列表失败，请稍后重试
+    <div v-else-if="error" class="status-msg" :class="{ 'status-error': !rateLimited, 'status-rate-limited': rateLimited }">
+      {{ rateLimited ? '似乎因为访问速度太快被 GitHub 限流了呢……' : '获取项目列表失败，请稍后重试' }}
     </div>
 
     <div v-else class="projects-list">
@@ -39,6 +39,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { mdiStarOutline } from '@mdi/js'
 useHead({ title: '项目' })
 
@@ -81,6 +82,15 @@ const { data: repos, pending, error } = useFetch<GitHubRepo[]>(
   'https://api.github.com/users/JessDaodao/repos?per_page=100&sort=updated',
   { server: false },
 )
+
+const rateLimited = computed(() => {
+  const e = error.value
+  if (!e) return false
+  if (e.statusCode !== 403) return false
+  const data = e.data as Record<string, unknown> | undefined
+  if (!data) return false
+  return typeof data.message === 'string' && data.message.includes('rate limit')
+})
 </script>
 
 <style scoped>
@@ -95,6 +105,11 @@ const { data: repos, pending, error } = useFetch<GitHubRepo[]>(
 
 .status-error {
   color: #c06060;
+}
+
+.status-rate-limited {
+  color: #b8973a;
+  font-style: italic;
 }
 
 .projects-list {
