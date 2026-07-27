@@ -11,10 +11,10 @@
         <p class="bio">这里是个人简介，写一些关于自己的话。</p>
       </div>
       <div class="nav-btns">
-        <button class="nav-btn">
+        <NuxtLink to="/projects" class="nav-btn">
           <MdiIcon class="nav-btn-icon" :path="mdiFolderOutline" :size="80" />
           <span class="nav-btn-label">项目</span>
-        </button>
+        </NuxtLink>
         <NuxtLink to="/links" class="nav-btn">
           <MdiIcon class="nav-btn-icon" :path="mdiLinkVariant" :size="80" />
           <span class="nav-btn-label">友情链接</span>
