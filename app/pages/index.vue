@@ -124,10 +124,4 @@ const age = computed(() => {
   gap: 10px;
   margin-top: 16px;
 }
-
-@media (max-width: 640px) {
-  .social-links {
-    justify-content: flex-start;
-  }
-}
 </style>
