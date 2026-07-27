@@ -95,13 +95,19 @@ const { data: repos, pending, error } = useFetch<GitHubRepo[]>(
   align-items: center;
   gap: 6px;
   margin-bottom: 20px;
+  padding: 10px 16px;
   color: #222;
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: color 0.2s;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-radius: 12px;
+  background: #fff;
 }
 
 .page-header:hover {
-  opacity: 0.7;
+  color: #707070;
 }
 
 .page-title {
