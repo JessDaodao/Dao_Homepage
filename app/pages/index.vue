@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="card-decor" />
     <header class="card-header">
       <div class="profile">
         <ImgLazy
@@ -62,6 +63,22 @@ const age = computed(() => {
 </script>
 
 <style scoped>
+.card-decor {
+  position: absolute;
+  bottom: 22px;
+  left: 22px;
+  width: 45px;
+  height: 25px;
+  border-radius: 12px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #FAB07A 0px, #FAB07A 8px,
+    #D9CDD0 8px, #D9CDD0 16px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;
