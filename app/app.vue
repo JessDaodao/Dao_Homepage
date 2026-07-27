@@ -29,6 +29,20 @@ const year = new Date().getFullYear()
   user-select: none;
 }
 
+.site-footer:hover {
+  background: repeating-linear-gradient(
+    -45deg,
+    #FAB07A 0px, #FAB07A 8px,
+    #D9CDD0 8px, #D9CDD0 16px
+  );
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  
+  .footer-text {
+    color: rgba(0, 0, 0, 0.7);
+  }
+}
+
 .footer-text {
   font-size: 11px;
   margin-left: 8px;
