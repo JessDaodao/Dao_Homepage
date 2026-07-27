@@ -14,7 +14,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img class="link-avatar" src="/default.png" alt="" />
+        <img class="link-avatar" :src="link.avatar" alt="" />
         <div class="link-text">
           <span class="link-name">{{ link.name }}</span>
           <span class="link-desc">{{ link.desc }}</span>
@@ -28,9 +28,9 @@
 import { mdiArrowLeft } from '@mdi/js'
 
 const links = [
-  { name: '示例博客', desc: '一个技术博客', url: 'https://example.com' },
-  { name: '示例项目', desc: '开源项目主页', url: 'https://example.org' },
-  { name: '示例社区', desc: '开发者社区', url: 'https://example.net' },
+  { name: '占位', desc: '占位', url: 'https://example.com', avatar: '/default.png' },
+  { name: '占位', desc: '占位', url: 'https://example.org', avatar: '/default.png' },
+  { name: '占位', desc: '占位', url: 'https://example.net', avatar: '/default.png' },
 ]
 </script>
 
