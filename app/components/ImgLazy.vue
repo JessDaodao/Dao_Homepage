@@ -15,7 +15,7 @@
       v-bind="$attrs"
       class="lazy-img-el"
       :class="[imgClass, { 'img-loaded': loaded }]"
-      :style="{ objectFit }"
+      :style="imgStyle"
       @load="onLoad"
       @error="onError"
     />
@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const props = withDefaults(defineProps<{
   src: string
@@ -53,6 +53,8 @@ const loaded = ref(false)
 const errored = ref(false)
 const spinnerVisible = ref(false)
 const resolvedSrc = ref('')
+
+const imgStyle = computed(() => ({ objectFit: props.objectFit } as Record<string, string>))
 
 let observer: IntersectionObserver | null = null
 let spinnerTimer: ReturnType<typeof setTimeout> | null = null
@@ -88,7 +90,9 @@ onMounted(() => {
   if (!rootRef.value) return
 
   observer = new IntersectionObserver(
-    ([entry]) => {
+    (entries) => {
+      const entry = entries[0]
+      if (!entry) return
       if (entry.isIntersecting) {
         resolvedSrc.value = props.src
         if (!props.noSpinner) startSpinnerTimer()
