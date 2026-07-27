@@ -11,7 +11,7 @@
     </div>
 
     <div v-else class="projects-list">
-      <GlowBorder v-for="repo in repos" :key="repo.id" border-radius="10px">
+      <GlowBorder v-for="repo in repos" :key="repo.id">
         <a
           :href="repo.html_url"
           class="project-item"
@@ -123,7 +123,7 @@ const rateLimited = computed(() => {
   flex-direction: column;
   gap: 8px;
   padding: 12px 16px;
-  border-radius: 10px;
+  border-radius: 12px;
   background-color: #fdf5e6;
   text-decoration: none;
   transition: background-color 0.2s;

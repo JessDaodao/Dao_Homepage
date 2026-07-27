@@ -3,7 +3,7 @@
     <PageHeader title="友情链接" />
 
     <div class="links-list">
-      <GlowBorder v-for="link in links" :key="link.name" border-radius="10px">
+      <GlowBorder v-for="link in links" :key="link.name">
         <a
           :href="link.url"
           class="link-item"
@@ -43,7 +43,7 @@ const links = [
   align-items: center;
   gap: 12px;
   padding: 8px 10px;
-  border-radius: 10px;
+  border-radius: 12px;
   background-color: #fdf5e6;
   text-decoration: none;
   transition: background-color 0.2s;
