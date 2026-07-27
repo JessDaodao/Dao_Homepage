@@ -1,9 +1,6 @@
 <template>
-  <div class="links-page">
-    <NuxtLink to="/" class="page-header">
-      <MdiIcon :path="mdiArrowLeft" :size="20" />
-      <h2 class="page-title">友情链接</h2>
-    </NuxtLink>
+  <div>
+    <PageHeader title="友情链接" />
 
     <div class="links-list">
       <a
@@ -25,7 +22,6 @@
 </template>
 
 <script setup>
-import { mdiArrowLeft } from '@mdi/js'
 
 const links = [
   { name: '占位', desc: '占位', url: 'https://example.com', avatar: '/default.png' },
@@ -35,36 +31,6 @@ const links = [
 </script>
 
 <style scoped>
-.links-page {
-  padding: 4px 0;
-}
-
-.page-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 20px;
-  padding: 10px 16px;
-  color: #222;
-  text-decoration: none;
-  transition: color 0.2s;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-radius: 12px;
-  background: #fff;
-}
-
-.page-header:hover {
-  color: #707070;
-}
-
-.page-title {
-  margin: 0;
-  font-size: 20px;
-  line-height: 1;
-}
-
 .links-list {
   display: flex;
   flex-direction: column;

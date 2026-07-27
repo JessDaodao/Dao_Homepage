@@ -1,9 +1,6 @@
 <template>
-  <div class="projects-page">
-    <NuxtLink to="/" class="page-header">
-      <MdiIcon :path="mdiArrowLeft" :size="20" />
-      <h2 class="page-title">项目</h2>
-    </NuxtLink>
+  <div>
+    <PageHeader title="项目" />
 
     <div v-if="pending" class="status-msg">
       <LoadingSpinner />
@@ -42,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { mdiArrowLeft, mdiStarOutline } from '@mdi/js'
+import { mdiStarOutline } from '@mdi/js'
 
 interface GitHubRepo {
   id: number
@@ -86,36 +83,6 @@ const { data: repos, pending, error } = useFetch<GitHubRepo[]>(
 </script>
 
 <style scoped>
-.projects-page {
-  padding: 4px 0;
-}
-
-.page-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 20px;
-  padding: 10px 16px;
-  color: #222;
-  text-decoration: none;
-  transition: color 0.2s;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-radius: 12px;
-  background: #fff;
-}
-
-.page-header:hover {
-  color: #707070;
-}
-
-.page-title {
-  margin: 0;
-  font-size: 20px;
-  line-height: 1;
-}
-
 .status-msg {
   display: flex;
   justify-content: center;
