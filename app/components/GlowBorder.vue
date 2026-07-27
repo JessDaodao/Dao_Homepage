@@ -46,8 +46,8 @@ onUnmounted(() => {
 <style scoped>
 .glow-border {
   position: relative;
-  --mx: 0.5;
-  --my: 0.5;
+  --mx: -114;
+  --my: -114;
 }
 
 .glow-ring {
