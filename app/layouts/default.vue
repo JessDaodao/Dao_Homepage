@@ -1,13 +1,99 @@
 <template>
   <div class="layout">
-    <div class="card">
+    <div class="card" ref="cardRef">
       <slot />
     </div>
   </div>
 </template>
 
+<script setup lang="ts">
+const route = useRoute()
+const cardRef = ref<HTMLElement | null>(null)
+
+let isAnimating = false
+
+watch(
+  () => route.path,
+  async (_to, from) => {
+    if (!from) return
+    if (isAnimating) return
+    isAnimating = true
+
+    const card = cardRef.value
+    if (!card) {
+      isAnimating = false
+      return
+    }
+
+    const oldRect = card.getBoundingClientRect()
+    const oldW = oldRect.width
+    const oldH = oldRect.height
+
+    card.style.width = oldW + 'px'
+    card.style.height = oldH + 'px'
+    card.style.transition = 'none'
+    card.style.overflow = 'hidden'
+
+    await new Promise((r) => setTimeout(r, 320))
+    await nextTick()
+
+    card.style.width = ''
+    card.style.height = ''
+    card.style.transition = 'none'
+    const newRect = card.getBoundingClientRect()
+    const newW = newRect.width
+    const newH = newRect.height
+
+    if (Math.abs(newW - oldW) < 1 && Math.abs(newH - oldH) < 1) {
+      card.style.width = ''
+      card.style.height = ''
+      card.style.transition = ''
+      card.style.overflow = ''
+      isAnimating = false
+      return
+    }
+
+    card.style.width = oldW + 'px'
+    card.style.height = oldH + 'px'
+    card.style.transition = 'none'
+
+    requestAnimationFrame(() => {
+      card.style.transition =
+        'width 0.35s cubic-bezier(0.4, 0, 0.2, 1), height 0.35s cubic-bezier(0.4, 0, 0.2, 1)'
+      card.style.width = newW + 'px'
+      card.style.height = newH + 'px'
+
+      const cleanup = () => {
+        card.style.width = ''
+        card.style.height = ''
+        card.style.transition = ''
+        card.style.overflow = ''
+        isAnimating = false
+      }
+
+      card.addEventListener('transitionend', cleanup, { once: true })
+      setTimeout(cleanup, 500)
+    })
+  },
+)
+</script>
+
 <style>
-html, body {
+.page-enter-active {
+  transition: opacity 0.3s ease 0.4s;
+}
+.page-leave-active {
+  transition: opacity 0.25s ease;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+</style>
+
+<style>
+html,
+body {
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -26,6 +112,7 @@ html, body {
 }
 
 .card {
+  box-sizing: border-box;
   width: 100%;
   max-width: 600px;
   max-height: calc(100vh - 44px);
