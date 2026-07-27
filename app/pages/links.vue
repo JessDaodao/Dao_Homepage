@@ -14,7 +14,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img class="link-avatar" :src="link.avatar" alt="" />
+        <ImgLazy class="link-avatar" :src="link.avatar" alt="" />
         <div class="link-text">
           <span class="link-name">{{ link.name }}</span>
           <span class="link-desc">{{ link.desc }}</span>
@@ -85,7 +85,6 @@ const links = [
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  object-fit: cover;
   flex-shrink: 0;
 }
 
