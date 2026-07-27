@@ -18,6 +18,11 @@
         <NavButton to="/links" :icon="mdiLinkVariant" label="友情链接" />
       </div>
     </header>
+    <div class="social-links">
+      <SocialLink href="https://github.com/JessDaodao" src="/links/github.svg" alt="GitHub" title="GitHub" />
+      <SocialLink href="https://space.bilibili.com/494565117" src="/links/bili.svg" alt="Bilibili" title="Bilibili" />
+      <SocialLink href="https://namemc.com/profile/ress2338396" src="/links/namemc.svg" alt="NameMC" title="NameMC" />
+    </div>
   </div>
 </template>
 
@@ -58,5 +63,12 @@ useHead({ title: '首页' })
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
 }
 </style>
