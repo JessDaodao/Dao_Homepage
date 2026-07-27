@@ -14,14 +14,24 @@
         </p>
       </div>
       <div class="nav-btns">
-        <NavButton to="/projects" :icon="mdiFolderOutline" label="项目" />
-        <NavButton to="/links" :icon="mdiLinkVariant" label="友情链接" />
+        <GlowBorder>
+          <NavButton to="/projects" :icon="mdiFolderOutline" label="项目" />
+        </GlowBorder>
+        <GlowBorder>
+          <NavButton to="/links" :icon="mdiLinkVariant" label="友情链接" />
+        </GlowBorder>
       </div>
     </header>
     <div class="social-links">
-      <SocialLink href="https://github.com/JessDaodao" src="/links/github.svg" alt="GitHub" title="GitHub" />
-      <SocialLink href="https://space.bilibili.com/494565117" src="/links/bili.svg" alt="Bilibili" title="Bilibili" />
-      <SocialLink href="https://namemc.com/profile/ress2338396" src="/links/namemc.svg" alt="NameMC" title="NameMC" />
+      <GlowBorder>
+        <SocialLink href="https://github.com/JessDaodao" src="/links/github.svg" alt="GitHub" title="GitHub" />
+      </GlowBorder>
+      <GlowBorder>
+        <SocialLink href="https://space.bilibili.com/494565117" src="/links/bili.svg" alt="Bilibili" title="Bilibili" />
+      </GlowBorder>
+      <GlowBorder>
+        <SocialLink href="https://namemc.com/profile/ress2338396" src="/links/namemc.svg" alt="NameMC" title="NameMC" />
+      </GlowBorder>
     </div>
   </div>
 </template>
