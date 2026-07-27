@@ -26,13 +26,13 @@ defineProps<{
   justify-content: center;
   width: 36px;
   height: 36px;
-  border-radius: 8px;
-  background: #f5f0e8;
+  border-radius: 12px;
+  background: #fdf5e6;
   transition: background 0.2s;
 }
 
 .social-link:hover {
-  background: #ede4d0;
+  background: #f7e8c6;
 }
 
 .social-icon {

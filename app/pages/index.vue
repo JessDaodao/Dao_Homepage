@@ -49,6 +49,12 @@ const age = computed(() => {
   gap: 24px;
 }
 
+@media (max-width: 640px) {
+  .card-header {
+    flex-direction: column;
+  }
+}
+
 .avatar {
   width: 80px;
   height: 80px;
@@ -80,5 +86,11 @@ const age = computed(() => {
   justify-content: flex-end;
   gap: 10px;
   margin-top: 16px;
+}
+
+@media (max-width: 640px) {
+  .social-links {
+    justify-content: flex-start;
+  }
 }
 </style>

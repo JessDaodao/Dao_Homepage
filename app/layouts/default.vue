@@ -167,4 +167,10 @@ body {
 .card::-webkit-scrollbar {
   display: none;
 }
+
+@media (max-width: 640px) {
+  .card {
+    margin: 0 16px;
+  }
+}
 </style>
