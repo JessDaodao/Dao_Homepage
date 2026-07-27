@@ -161,25 +161,10 @@ body {
   background-color: #ffffff;
   box-shadow: none;
   overflow-y: auto;
-
-  scrollbar-width: thin;
-  scrollbar-color: #ccc transparent;
+  scrollbar-width: none;
 }
 
 .card::-webkit-scrollbar {
-  width: 6px;
-}
-
-.card::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.card::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 3px;
-}
-
-.card::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
+  display: none;
 }
 </style>
