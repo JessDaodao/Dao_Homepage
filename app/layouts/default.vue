@@ -103,15 +103,26 @@ body {
 
 <style scoped>
 .layout {
+  position: relative;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fdf5e6;
+  background: url('/wallpaper.webp') center / cover no-repeat;
   overflow: hidden;
 }
 
+.layout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 0;
+}
+
 .card {
+  position: relative;
+  z-index: 1;
   box-sizing: border-box;
   width: 100%;
   max-width: 600px;
