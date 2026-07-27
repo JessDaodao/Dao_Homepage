@@ -26,7 +26,7 @@ const tx = computed(() => ({
   transform:
     `perspective(800px) ` +
     `rotateX(${rx.value}deg) rotateY(${ry.value}deg) ` +
-    `translateZ(${pressed.value ? '-6px' : '0px'}) ` +
+    `translateZ(${pressed.value ? '-3px' : '0px'}) ` +
     `scale(${sc.value})`,
 }))
 
@@ -38,9 +38,9 @@ function onDown(e: MouseEvent) {
   const dy = ((e.clientY - r.top) / r.height - 0.5) * 2
 
   springing.value = false
-  rx.value = -dy * 14
-  ry.value = dx * 14
-  sc.value = 0.94
+  rx.value = -dy * 8
+  ry.value = dx * 8
+  sc.value = 0.97
   pressed.value = true
 }
 

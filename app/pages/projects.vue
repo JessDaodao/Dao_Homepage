@@ -11,29 +11,31 @@
     </div>
 
     <div v-else class="projects-list">
-      <GlowBorder v-for="repo in repos" :key="repo.id">
-        <a
-          :href="repo.html_url"
-          class="project-item"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div class="project-main">
-            <span class="project-name">{{ repo.name }}</span>
-            <span v-if="repo.description" class="project-desc">{{ repo.description }}</span>
-          </div>
-          <div class="project-meta">
-            <span v-if="repo.language" class="meta-lang">
-              <span class="lang-dot" :style="{ background: langColor(repo.language) }"></span>
-              {{ repo.language }}
-            </span>
-            <span v-if="repo.stargazers_count > 0" class="meta-stars">
-              <MdiIcon :path="mdiStarOutline" :size="14" />
-              {{ repo.stargazers_count }}
-            </span>
-          </div>
-        </a>
-      </GlowBorder>
+      <ClickTilt v-for="repo in repos" :key="repo.id">
+        <GlowBorder>
+          <a
+            :href="repo.html_url"
+            class="project-item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="project-main">
+              <span class="project-name">{{ repo.name }}</span>
+              <span v-if="repo.description" class="project-desc">{{ repo.description }}</span>
+            </div>
+            <div class="project-meta">
+              <span v-if="repo.language" class="meta-lang">
+                <span class="lang-dot" :style="{ background: langColor(repo.language) }"></span>
+                {{ repo.language }}
+              </span>
+              <span v-if="repo.stargazers_count > 0" class="meta-stars">
+                <MdiIcon :path="mdiStarOutline" :size="14" />
+                {{ repo.stargazers_count }}
+              </span>
+            </div>
+          </a>
+        </GlowBorder>
+      </ClickTilt>
     </div>
   </div>
 </template>

@@ -3,20 +3,22 @@
     <PageHeader title="友情链接" />
 
     <div class="links-list">
-      <GlowBorder v-for="link in links" :key="link.name">
-        <a
-          :href="link.url"
-          class="link-item"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <ImgLazy class="link-avatar" :src="link.avatar" alt="" />
-          <div class="link-text">
-            <span class="link-name">{{ link.name }}</span>
-            <span class="link-desc">{{ link.desc }}</span>
-          </div>
-        </a>
-      </GlowBorder>
+      <ClickTilt v-for="link in links" :key="link.name">
+        <GlowBorder>
+          <a
+            :href="link.url"
+            class="link-item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ImgLazy class="link-avatar" :src="link.avatar" alt="" />
+            <div class="link-text">
+              <span class="link-name">{{ link.name }}</span>
+              <span class="link-desc">{{ link.desc }}</span>
+            </div>
+          </a>
+        </GlowBorder>
+      </ClickTilt>
     </div>
   </div>
 </template>
