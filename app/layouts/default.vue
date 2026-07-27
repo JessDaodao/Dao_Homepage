@@ -10,15 +10,14 @@
 const route = useRoute()
 const cardRef = ref<HTMLElement | null>(null)
 
-let cancelToken = false
+let animId = 0
 
 watch(
   () => route.path,
   async (_to, from) => {
     if (!from) return
 
-    cancelToken = true
-    const token = (cancelToken = false)
+    const myId = ++animId
 
     const card = cardRef.value
     if (!card) return
@@ -38,9 +37,9 @@ watch(
     card.style.overflow = 'hidden'
 
     await new Promise((r) => setTimeout(r, 320))
-    if (token) return
+    if (myId !== animId) return
     await nextTick()
-    if (token) return
+    if (myId !== animId) return
 
     card.style.width = ''
     card.style.height = ''
@@ -49,7 +48,7 @@ watch(
     const newW = newRect.width
     const newH = newRect.height
 
-    if (token) {
+    if (myId !== animId) {
       card.style.width = ''
       card.style.height = ''
       card.style.transition = ''
@@ -70,16 +69,20 @@ watch(
     card.style.transition = 'none'
 
     requestAnimationFrame(() => {
-      if (token) return
+      if (myId !== animId) return
 
       card.style.transition =
         'width 0.35s cubic-bezier(0.4, 0, 0.2, 1), height 0.35s cubic-bezier(0.4, 0, 0.2, 1)'
       card.style.width = newW + 'px'
       card.style.height = newH + 'px'
 
+      let remaining = 0
+      if (Math.abs(newW - oldW) >= 1) remaining++
+      if (Math.abs(newH - oldH) >= 1) remaining++
+
       let settled = false
       const settle = () => {
-        if (settled || token) return
+        if (settled || myId !== animId) return
         settled = true
         card.style.width = ''
         card.style.height = ''
@@ -87,8 +90,18 @@ watch(
         card.style.overflow = ''
       }
 
-      card.addEventListener('transitionend', settle, { once: true })
-      setTimeout(settle, 500)
+      const onTransitionEnd = (e: TransitionEvent) => {
+        if (e.propertyName === 'width' || e.propertyName === 'height') {
+          remaining--
+          if (remaining <= 0) settle()
+        }
+      }
+
+      card.addEventListener('transitionend', onTransitionEnd)
+      setTimeout(() => {
+        card.removeEventListener('transitionend', onTransitionEnd)
+        settle()
+      }, 500)
     })
   },
 )
