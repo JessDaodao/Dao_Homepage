@@ -1,9 +1,9 @@
 <template>
   <div class="links-page">
-    <div class="page-header">
-      <NuxtLink to="/" class="back-btn">← 返回首页</NuxtLink>
+    <NuxtLink to="/" class="page-header">
+      <MdiIcon :path="mdiArrowLeft" :size="20" />
       <h2 class="page-title">友情链接</h2>
-    </div>
+    </NuxtLink>
 
     <div class="links-list">
       <a
@@ -18,12 +18,12 @@
         <span class="link-desc">{{ link.desc }}</span>
       </a>
     </div>
-
-    <p class="footer-hint">欢迎交换友链 ✨</p>
   </div>
 </template>
 
 <script setup>
+import { mdiArrowLeft } from '@mdi/js'
+
 const links = [
   { name: '示例博客', desc: '一个技术博客', url: 'https://example.com' },
   { name: '示例项目', desc: '开源项目主页', url: 'https://example.org' },
@@ -39,26 +39,21 @@ const links = [
 .page-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
   margin-bottom: 20px;
-}
-
-.back-btn {
-  font-size: 14px;
-  color: #888;
-  text-decoration: none;
-  transition: color 0.2s;
-  white-space: nowrap;
-}
-
-.back-btn:hover {
   color: #222;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.page-header:hover {
+  opacity: 0.7;
 }
 
 .page-title {
   margin: 0;
   font-size: 20px;
-  color: #222;
+  line-height: 1;
 }
 
 .links-list {
@@ -91,12 +86,5 @@ const links = [
 .link-desc {
   font-size: 13px;
   color: #a09060;
-}
-
-.footer-hint {
-  margin: 20px 0 0;
-  font-size: 13px;
-  color: #bbb;
-  text-align: center;
 }
 </style>
