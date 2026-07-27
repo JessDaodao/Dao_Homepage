@@ -89,6 +89,11 @@ const age = computed(() => {
 @media (max-width: 640px) {
   .card-header {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-btns {
+    width: 100%;
   }
 }
 
