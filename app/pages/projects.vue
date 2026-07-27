@@ -5,7 +5,9 @@
       <h2 class="page-title">项目</h2>
     </NuxtLink>
 
-    <div v-if="pending" class="status-msg">加载中…</div>
+    <div v-if="pending" class="status-msg">
+      <LoadingSpinner />
+    </div>
 
     <div v-else-if="error" class="status-msg status-error">
       获取项目列表失败，请稍后重试
@@ -109,10 +111,12 @@ const { data: repos, pending, error } = useFetch<GitHubRepo[]>(
 }
 
 .status-msg {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #888;
   font-size: 14px;
-  padding: 24px 0;
+  padding: 40px 0;
 }
 
 .status-error {
