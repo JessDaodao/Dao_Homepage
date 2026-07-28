@@ -20,6 +20,7 @@
         </GlowBorder>
       </ClickTilt>
     </div>
+    <p class="links-hint">交换友链请联系 <a class="hint-email" href="mailto:694428809@qq.com">694428809@qq.com</a></p>
   </div>
 </template>
 
@@ -77,5 +78,22 @@ const links = [
 .link-desc {
   font-size: 13px;
   color: #a09060;
+}
+
+.links-hint {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: #999;
+  text-align: left;
+}
+
+.hint-email {
+  color: #7a6520;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.hint-email:hover {
+  color: #b8973a;
 }
 </style>
