@@ -30,6 +30,7 @@ useHead({ title: '友情链接' })
 const links = [
   { name: '千景', desc: '设计巨神', url: 'https://raku404.com/', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=1664147500&spec=100&v=0.26750974337065003' },
   { name: '落雨', desc: '皮肤站大手子', url: 'https://moeluoyu.xyz/', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=1498640871&spec=100&v=0.26750974337065003' },
+  { name: '薄荷树莓', desc: '运维大手子', url: 'https://mintraspberry.cool/', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=1196235337&spec=100&v=0.26750974337065003' },
 ]
 </script>
 
