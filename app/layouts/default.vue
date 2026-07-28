@@ -109,6 +109,10 @@ watch(
 </script>
 
 <style>
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .page-enter-active {
   transition: opacity 0.3s ease 0.4s;
 }
