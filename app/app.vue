@@ -3,5 +3,4 @@
     <NuxtRouteAnnouncer />
     <NuxtPage />
   </NuxtLayout>
-  <SiteFooter />
 </template>
