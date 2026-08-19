@@ -2,36 +2,31 @@
   <div>
     <PageHeader title="项目" />
 
-    <div v-if="pending" class="status-msg">
-      <LoadingSpinner />
-    </div>
-
-    <div v-else-if="error" class="status-msg" :class="{ 'status-error': !rateLimited, 'status-rate-limited': rateLimited }">
-      {{ rateLimited ? '似乎因为访问速度太快被 GitHub 限流了呢……' : '获取项目列表失败，请稍后重试' }}
-    </div>
-
-    <div v-else class="projects-list">
-      <ClickTilt v-for="repo in repos" :key="repo.id">
+    <div class="projects-list">
+      <ClickTilt v-for="p in projects" :key="p.name">
         <GlowBorder>
           <a
-            :href="repo.html_url"
+            :href="p.url"
             class="project-item"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div class="project-main">
-              <span class="project-name">{{ repo.name }}</span>
-              <span v-if="repo.description" class="project-desc">{{ repo.description }}</span>
+            <div
+              class="project-bg"
+              :class="{ 'has-img': isImg(p.background) }"
+              :style="!isImg(p.background) ? { background: p.background } : undefined"
+            >
+              <img
+                v-if="isImg(p.background) && !failedImgs.has(p.name)"
+                :src="p.background"
+                alt=""
+                @error="failedImgs.add(p.name)"
+              />
+              <MdiIcon v-else :path="mdiFolderOutline" :size="26" />
             </div>
-            <div class="project-meta">
-              <span v-if="repo.language" class="meta-lang">
-                <span class="lang-dot" :style="{ background: langColor(repo.language) }"></span>
-                {{ repo.language }}
-              </span>
-              <span v-if="repo.stargazers_count > 0" class="meta-stars">
-                <MdiIcon :path="mdiStarOutline" :size="14" />
-                {{ repo.stargazers_count }}
-              </span>
+            <div class="project-main">
+              <span class="project-name">{{ p.name }}</span>
+              <span class="project-desc">{{ p.desc }}</span>
             </div>
           </a>
         </GlowBorder>
@@ -40,80 +35,34 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { computed } from 'vue'
-import { mdiStarOutline } from '@mdi/js'
+<script setup>
+import { reactive } from 'vue'
+import { mdiFolderOutline } from '@mdi/js'
 useHead({ title: '项目' })
 
-interface GitHubRepo {
-  id: number
-  name: string
-  html_url: string
-  description: string | null
-  language: string | null
-  stargazers_count: number
-  fork: boolean
+const failedImgs = reactive(new Set())
+
+function isImg(bg) {
+  return typeof bg === 'string' && (bg.startsWith('/') || bg.startsWith('http'))
 }
 
-const langColors: Record<string, string> = {
-  JavaScript: '#f1e05a',
-  TypeScript: '#3178c6',
-  Vue: '#41b883',
-  Python: '#3572A5',
-  Java: '#b07219',
-  Go: '#00ADD8',
-  Rust: '#dea584',
-  C: '#555555',
-  'C++': '#f34b7d',
-  'C#': '#178600',
-  HTML: '#e34c26',
-  CSS: '#563d7c',
-  Shell: '#89e051',
-  Kotlin: '#A97BFF',
-  Swift: '#F05138',
-  Dart: '#00B4AB',
-  Ruby: '#701516',
-  PHP: '#4F5D95',
-}
-
-function langColor(lang: string): string {
-  return langColors[lang] || '#888'
-}
-
-const { data: repos, pending, error } = useFetch<GitHubRepo[]>(
-  'https://api.github.com/users/JessDaodao/repos?per_page=100&sort=updated',
-  { server: false },
-)
-
-const rateLimited = computed(() => {
-  const e = error.value
-  if (!e) return false
-  if (e.statusCode !== 403) return false
-  const data = e.data as Record<string, unknown> | undefined
-  if (!data) return false
-  return typeof data.message === 'string' && data.message.includes('rate limit')
-})
+const projects = [
+  {
+    name: 'CSBC 官方网站（开发站）',
+    desc: 'CSBC 华南马聚官网',
+    url: 'https://csbc-web.csituka.top/',
+    background: '/projects/csbc.webp',
+  },
+  {
+    name: 'FimTale-Neo（开发站）',
+    desc: '合作项目，主要参与视觉部分',
+    url: 'https://fimtale.dev',
+    background: '/projects/ft.webp',
+  },
+]
 </script>
 
 <style scoped>
-.status-msg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #888;
-  font-size: 14px;
-  padding: 40px 0;
-}
-
-.status-error {
-  color: #c06060;
-}
-
-.status-rate-limited {
-  color: #b8973a;
-  font-style: italic;
-}
-
 .projects-list {
   display: flex;
   flex-direction: column;
@@ -122,9 +71,10 @@ const rateLimited = computed(() => {
 
 .project-item {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 12px 16px;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
   border-radius: 12px;
   background-color: #fdf5e6;
   text-decoration: none;
@@ -135,10 +85,34 @@ const rateLimited = computed(() => {
   background-color: #f7e8c6;
 }
 
+.project-bg {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #f0e6d0;
+  color: #b0a080;
+}
+
+.project-bg.has-img {
+  background-color: #fdf5e6;
+}
+
+.project-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .project-main {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
+  min-width: 0;
 }
 
 .project-name {
@@ -151,34 +125,5 @@ const rateLimited = computed(() => {
   font-size: 13px;
   color: #a09060;
   line-height: 1.5;
-}
-
-.project-meta {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.meta-lang {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  color: #999;
-}
-
-.lang-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.meta-stars {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 12px;
-  color: #999;
 }
 </style>
