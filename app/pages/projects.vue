@@ -76,7 +76,7 @@ const projects = [
   flex-direction: row;
   align-items: center;
   gap: 12px;
-  padding: 8px 10px;
+  padding: 8px;
   border-radius: 12px;
   background-color: #fdf5e6;
   text-decoration: none;
@@ -90,7 +90,7 @@ const projects = [
 .project-bg {
   width: 48px;
   height: 48px;
-  border-radius: 10px;
+  border-radius: 8px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
