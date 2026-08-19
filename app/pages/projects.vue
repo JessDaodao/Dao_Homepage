@@ -16,13 +16,15 @@
               :class="{ 'has-img': isImg(p.background) }"
               :style="!isImg(p.background) ? { background: p.background } : undefined"
             >
-              <img
+              <ImgLazy
                 v-if="isImg(p.background) && !failedImgs.has(p.name)"
                 :src="p.background"
                 alt=""
+                no-spinner
+                :wrapper-style="{ width: '100%', height: '100%' }"
                 @error="failedImgs.add(p.name)"
               />
-              <MdiIcon v-else :path="mdiFolderOutline" :size="26" />
+              <MdiIcon v-else-if="isImg(p.background)" :path="mdiFolderOutline" :size="26" />
             </div>
             <div class="project-main">
               <span class="project-name">{{ p.name }}</span>
@@ -100,12 +102,6 @@ const projects = [
 
 .project-bg.has-img {
   background-color: #fdf5e6;
-}
-
-.project-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .project-main {

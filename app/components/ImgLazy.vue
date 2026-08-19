@@ -48,6 +48,8 @@ const props = withDefaults(defineProps<{
 
 defineOptions({ inheritAttrs: true })
 
+const emit = defineEmits<{ error: [] }>()
+
 const rootRef = ref<HTMLElement | null>(null)
 const loaded = ref(false)
 const errored = ref(false)
@@ -84,6 +86,7 @@ function onError() {
   errored.value = true
   loaded.value = false
   clearSpinnerTimer()
+  emit('error')
 }
 
 onMounted(() => {
